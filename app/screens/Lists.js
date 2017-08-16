@@ -23,7 +23,7 @@ class Lists extends Component {
           renderItem={({ item }) => (
             <ListItem
               onPress={() => this.handleListPress(item)}
-              name={item.name}
+              text={item.name}
             />
           )}
           keyExtractor={item => item.name}

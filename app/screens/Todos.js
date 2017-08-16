@@ -3,25 +3,35 @@ import { View, FlatList } from 'react-native';
 
 import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
-import lists from '../data/lists';
 
 class Todos extends Component {
-  handleTodoPress = () => {
-    console.log(`todo press`);
+  handleTodoPress = (todo) => {
+    console.log(`selected ${todo}`);
   }
+
+  handleCreatePress = () => {
+    console.log('pressed create todo');
+  }
+
+  // renderTodoList = () => {
+  //   return todos.map((item) => {
+  //     return <ListItem name={item} />;
+  //   });
+  // }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TitleBar text="Lists" />
+        <TitleBar text="Todos" canCreate onPress={this.handleCreatePress} />
         <FlatList
-          data={lists}
+          data={['Do Laundry', 'Wash Car', 'Mow Lawn']}
           renderItem={({ item }) => (
             <ListItem
-              name={item.name}
+              onPress={() => this.handleTodoPress(item)}
+              text={item}
             />
           )}
-          keyExtractor={item => item.name}
+          keyExtractor={({ item }) => item}
           ItemSeparatorComponent={Separator}
         />
       </View>
