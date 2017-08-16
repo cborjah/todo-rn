@@ -2,6 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
   container: {
+    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'green',
@@ -9,7 +10,7 @@ export default EStyleSheet.create({
     paddingBottom: 20,
   },
   text: {
-    color: 'white',
     fontSize: 20,
+    color: 'white',
   },
 });

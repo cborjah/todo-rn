@@ -11,7 +11,7 @@ export default EStyleSheet.create({
   row: {
     flexDirection: 'row',
     paddingVertical: 15,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     alignItems: 'center',
     justifyContent: 'space-between',
   },

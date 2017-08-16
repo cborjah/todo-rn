@@ -5,24 +5,19 @@ import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
 import lists from '../data/lists';
 
-class Lists extends Component {
-  handleListPress = (item) => {
-    console.log(`selected ${item.name}`);
-  }
-
-  handleCreatePress = () => {
-    console.log('pressed create new list button');
+class Todos extends Component {
+  handleTodoPress = () => {
+    console.log(`todo press`);
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TitleBar text="Todo Lists" canCreate onPress={this.handleCreatePress} />
+        <TitleBar text="Lists" />
         <FlatList
           data={lists}
           renderItem={({ item }) => (
             <ListItem
-              onPress={() => this.handleListPress(item)}
               name={item.name}
             />
           )}
@@ -34,4 +29,4 @@ class Lists extends Component {
   }
 }
 
-export default Lists;
+export default Todos;
