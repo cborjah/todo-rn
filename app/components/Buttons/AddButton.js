@@ -3,9 +3,9 @@ import { Text, TouchableHighlight } from 'react-native';
 
 import styles from './styles';
 
-const CreateButton = ({ onPress }) => (
+const AddButton = ({ onPress }) => (
   <TouchableHighlight
-    style={styles.createButtonContainer}
+    style={styles.addButtonContainer}
     underlayColor={styles.$underlayColor}
     onPress={onPress}
   >
@@ -13,8 +13,8 @@ const CreateButton = ({ onPress }) => (
   </TouchableHighlight>
 );
 
-CreateButton.propTypes = {
+AddButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-export default CreateButton;
+export default AddButton;

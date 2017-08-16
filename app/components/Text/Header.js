@@ -4,8 +4,8 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 
 const Header = () => (
-  <View style={styles.container}>
-    <Text style={styles.text}>Todo</Text>
+  <View style={styles.headerContainer}>
+    <Text style={styles.header}>Todo</Text>
   </View>
 );
 

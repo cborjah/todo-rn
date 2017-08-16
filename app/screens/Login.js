@@ -18,7 +18,7 @@ class Login extends Component {
           <Header />
           <Input placeholder="username" spellCheck={false} autoCorrect={false} />
           <Input placeholder="password" secureTextEntry />
-          <LoginButton onPress={this.handleLogin} />
+          <LoginButton label="LOGIN" onPress={this.handleLogin} />
         </KeyboardAvoidingView>
       </Container>
     );

@@ -1,5 +1,5 @@
 import LoginButton from './LoginButton';
-import CreateButton from './CreateButton';
+import AddButton from './AddButton';
 import styles from './styles';
 
-export { LoginButton, CreateButton, styles };
+export { LoginButton, AddButton, styles };

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { View, Text, StatusBar } from 'react-native';
 
-import { CreateButton } from '../Buttons';
+import { AddButton } from '../Buttons';
 import styles from './styles';
 
 const TitleBar = ({ text, canCreate = false, onPress }) => (
@@ -10,7 +10,7 @@ const TitleBar = ({ text, canCreate = false, onPress }) => (
     <Text style={styles.text}>{text}</Text>
 
     {/* Adds a create button to the title bar  */}
-    {canCreate ? <CreateButton onPress={onPress} /> : null}
+    {canCreate ? <AddButton onPress={onPress} /> : null}
   </View>
 );
 

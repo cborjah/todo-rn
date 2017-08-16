@@ -2,7 +2,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
   container: {
-    // display: 'flex',
     flexDirection: 'row',
     width: '80%',
     marginVertical: 10,

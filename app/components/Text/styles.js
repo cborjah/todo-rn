@@ -1,12 +1,20 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-  container: {
+  headerContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 80,
   },
-  text: {
+  header: {
+    fontSize: 40,
+  },
+  createTextContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 80,
+  },
+  createText: {
     fontSize: 40,
   },
 });

@@ -3,14 +3,18 @@ import { TouchableHighlight, Text } from 'react-native';
 
 import styles from './styles';
 
-const LoginButton = ({ onPress }) => (
-  <TouchableHighlight style={styles.buttonContainer} onPress={onPress}>
-    <Text>Login</Text>
+const LoginButton = ({ onPress, label, color }) => (
+  <TouchableHighlight
+    style={[styles.loginButtonContainer, { backgroundColor: color }]}
+    onPress={onPress}
+  >
+    <Text>{label}</Text>
   </TouchableHighlight>
 );
 
 LoginButton.propTypes = {
   onPress: PropTypes.func,
+  label: PropTypes.string,
 };
 
 export default LoginButton;

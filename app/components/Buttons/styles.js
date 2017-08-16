@@ -7,7 +7,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
   },
-  createButtonContainer: {
+  addButtonContainer: {
     position: 'absolute',
     top: 23,
     right: 8,
