@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
 import lists from '../data/lists';
 
-const Lists = () => (
-  <View style={{ flex: 1 }}>
-    <TitleBar text="Lists" />
-    <FlatList
-      data={lists}
-      renderItem={({ item }) => (
-        <ListItem
-          name={item.name}
+class Lists extends Component {
+  handleListPress = (item) => {
+    console.log(`selected ${item.name}`);
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <TitleBar text="Lists" />
+        <FlatList
+          data={lists}
+          renderItem={({ item }) => (
+            <ListItem
+              onPress={() => this.handleListPress(item)}
+              name={item.name}
+            />
+          )}
+          keyExtractor={item => item.name}
+          ItemSeparatorComponent={Separator}
         />
-      )}
-      keyExtractor={item => item.name}
-      ItemSeparatorComponent={Separator}
-    />
-  </View>
-);
+      </View>
+    );
+  }
+}
 
 export default Lists;
