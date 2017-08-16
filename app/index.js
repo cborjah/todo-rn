@@ -1,10 +1,7 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Login from './screens/Login';
-import Lists from './screens/Lists';
-import Todos from './screens/Todos';
-import CreateList from './screens/CreateList';
+import Navigator from './config/routes';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -13,4 +10,4 @@ EStyleSheet.build({
   outline: 1,
 });
 
-export default () => <CreateList />;
+export default () => <Navigator />;

@@ -1,14 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import { Container } from '../components/Container';
 import { Header } from '../components/Text';
 import { Input } from '../components/TextInput';
 import { LoginButton } from '../components/Buttons';
 
+/*
+Navigation action that navigates to Lists screen and clears navigation stack
+history for performance optimization.
+*/
+const resetNavigationStack = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Lists' }),
+  ],
+});
+
 class Login extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  }
+
   handleLogin = () => {
-    console.log('login button pressed');
+    this.props.navigation.dispatch(resetNavigationStack);
   }
 
   render() {
