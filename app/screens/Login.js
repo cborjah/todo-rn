@@ -1,11 +1,28 @@
 import React, { Component, PropTypes } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { View, TextInput, KeyboardAvoidingView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/user';
 
 import { Container } from '../components/Container';
 import { Header } from '../components/Text';
 import { Input } from '../components/TextInput';
 import { LoginButton } from '../components/Buttons';
+// import performLogin from '../api/api_login';
+
+const styles = EStyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    width: '80%',
+    marginVertical: 10,
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+  },
+});
 
 /*
 Navigation action that navigates to Lists screen and clears navigation stack
@@ -21,10 +38,23 @@ const resetNavigationStack = NavigationActions.reset({
 class Login extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    loginUser: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: null,
+      password: null,
+    };
   }
 
   handleLogin = () => {
-    this.props.navigation.dispatch(resetNavigationStack);
+    this.props.loginUser(this.state.username, this.state.password)
+      .then(() => this.props.navigation.dispatch(resetNavigationStack));
+    // this.props.navigation.dispatch(resetNavigationStack);
+    // performLogin(this.state.username, this.state.password);
   }
 
   render() {
@@ -32,8 +62,23 @@ class Login extends Component {
       <Container>
         <KeyboardAvoidingView behavior="padding">
           <Header />
-          <Input placeholder="username" spellCheck={false} autoCorrect={false} />
-          <Input placeholder="password" secureTextEntry />
+          <View style={styles.container}>
+            <TextInput
+              style={styles.input}
+              placeholder="username"
+              spellCheck={false}
+              autoCorrect={false}
+              onChangeText={text => this.setState({ username: text })}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextInput
+              style={styles.input}
+              placeholder="password"
+              secureTextEntry
+              onChangeText={text => this.setState({ password: text })}
+            />
+          </View>
           <LoginButton label="LOGIN" onPress={this.handleLogin} />
         </KeyboardAvoidingView>
       </Container>
@@ -41,4 +86,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     handleLogin: (username, password) => {
+//       dispatch(loginUser(username, password));
+//     },
+//   };
+// };
+
+export default connect(null, { loginUser })(Login);
