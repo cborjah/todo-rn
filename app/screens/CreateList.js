@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { addList } from '../actions/user';
 
 import { Container } from '../components/Container';
-// import { Input } from '../components/TextInput';
 import { CreateText } from '../components/Text';
 
 const styles = EStyleSheet.create({
@@ -43,7 +42,9 @@ class CreateList extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     addList: PropTypes.func,
+    userId: PropTypes.string,
   }
+
   constructor(props) {
     super(props);
 
@@ -53,9 +54,8 @@ class CreateList extends Component {
   }
 
   handleCreateList = () => {
-    this.props.addList(this.state.listName);
-    this.props.navigation.goBack(null);
-      // .then(() => this.props.navigation.goBack(null));
+    this.props.addList(this.props.userId, this.state.listName);
+    this.props.navigation.goBack();
   }
 
   handleCancel = () => {
@@ -87,4 +87,10 @@ class CreateList extends Component {
   }
 }
 
-export default connect(null, { addList })(CreateList);
+const mapStateToProps = (state) => {
+  return {
+    userId: state.userData.userId,
+  };
+}
+
+export default connect(mapStateToProps, { addList })(CreateList);

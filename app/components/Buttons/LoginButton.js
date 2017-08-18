@@ -6,6 +6,7 @@ import styles from './styles';
 const LoginButton = ({ onPress, label, color }) => (
   <TouchableHighlight
     style={[styles.loginButtonContainer, { backgroundColor: color }]}
+    underlayColor={styles.$underlayColor}
     onPress={onPress}
   >
     <Text>{label}</Text>

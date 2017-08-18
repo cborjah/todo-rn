@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { addTodo } from '../actions/user';
 
 import { Container } from '../components/Container';
-import { Input } from '../components/TextInput';
 import { CreateText } from '../components/Text';
 
 const styles = EStyleSheet.create({
@@ -43,6 +42,8 @@ class CreateTodo extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     addTodo: PropTypes.func,
+    activeList: PropTypes.string,
+    userId: PropTypes.string,
   }
 
   constructor(props) {
@@ -54,10 +55,8 @@ class CreateTodo extends Component {
   }
 
   handleCreateTodo = () => {
-    // console.log('create list');
-    console.log(this.state.todo);
-    this.props.addTodo(this.state.todo);
-    this.props.navigation.goBack(null);
+    // Unfinished
+    this.props.addTodo(this.props.userId, this.state.todo, this.props.activeList);
   }
 
   handleCancel = () => {
@@ -89,4 +88,11 @@ class CreateTodo extends Component {
   }
 }
 
-export default connect(null, { addTodo })(CreateTodo);
+const mapStateToProps = (state) => {
+  return {
+    userId: state.userData.userId,
+    activeList: state.userData.activeList,
+  };
+}
+
+export default connect(mapStateToProps, { addTodo })(CreateTodo);

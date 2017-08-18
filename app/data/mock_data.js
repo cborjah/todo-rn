@@ -1,4 +1,4 @@
-export default [
+export const lists = [
   {
     name: 'Chores',
     todos: [
@@ -14,5 +14,16 @@ export default [
       '1 mile run',
       'Lift weights',
     ],
+  },
+];
+
+export const todos = [
+  {
+    todo: 'Wash Car',
+    status: 'Open',
+  },
+  {
+    todo: 'Take Out Trash',
+    status: 'Open',
   },
 ];

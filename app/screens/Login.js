@@ -7,15 +7,14 @@ import { loginUser } from '../actions/user';
 
 import { Container } from '../components/Container';
 import { Header } from '../components/Text';
-import { Input } from '../components/TextInput';
 import { LoginButton } from '../components/Buttons';
-// import performLogin from '../api/api_login';
 
 const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '80%',
     marginVertical: 10,
+    backgroundColor: 'grey',
   },
   input: {
     flex: 1,
@@ -26,7 +25,7 @@ const styles = EStyleSheet.create({
 
 /*
 Navigation action that navigates to Lists screen and clears navigation stack
-history for performance optimization.
+history for performance.
 */
 const resetNavigationStack = NavigationActions.reset({
   index: 0,
@@ -50,11 +49,10 @@ class Login extends Component {
     };
   }
 
+  // Still need to implement form validation
   handleLogin = () => {
     this.props.loginUser(this.state.username, this.state.password)
       .then(() => this.props.navigation.dispatch(resetNavigationStack));
-    // this.props.navigation.dispatch(resetNavigationStack);
-    // performLogin(this.state.username, this.state.password);
   }
 
   render() {
@@ -85,13 +83,5 @@ class Login extends Component {
     );
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     handleLogin: (username, password) => {
-//       dispatch(loginUser(username, password));
-//     },
-//   };
-// };
 
 export default connect(null, { loginUser })(Login);

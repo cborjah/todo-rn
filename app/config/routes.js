@@ -3,38 +3,9 @@ import { StackNavigator } from 'react-navigation';
 import Login from '../screens/Login';
 import Lists from '../screens/Lists';
 import Todos from '../screens/Todos';
+import TodoInfo from '../screens/TodoInfo';
 import CreateList from '../screens/CreateList';
 import CreateTodo from '../screens/CreateTodo';
-
-// const HomeStack = StackNavigator({
-//   Login: {
-//     screen: Login,
-//     navigationOptions: {
-//       header: () => null,
-//     },
-//   },
-//   Lists: {
-//     screen: Lists,
-//     navigationOptions: {
-//       header: () => null,
-//     },
-//   },
-//   Todos: {
-//     screen: Todos,
-//     navigationOptions: {
-//       header: () => null,
-//     },
-//   },
-// });
-//
-// const CreateStack = StackNavigator({
-//   CreateList: {
-//     screen: CreateList,
-//   },
-//   CreateTodo: {
-//     screen: CreateTodo,
-//   },
-// });
 
 export default StackNavigator({
   Home: {
@@ -55,6 +26,9 @@ export default StackNavigator({
       header: () => null,
     },
   },
+  TodoInfo: {
+    screen: TodoInfo,
+  },
   CreateList: {
     screen: CreateList,
   },
@@ -67,11 +41,6 @@ export default StackNavigator({
 
 // export default StackNavigator({
 //   Home: {
-//     screen: HomeStack,
-//   },
-//   Modals: {
-//     screen: CreateStack,
-//   },
-// }, {
-//   headerMode: 'none',
+//     screen: TodoInfo,
+//   }
 // });

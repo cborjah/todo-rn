@@ -6,6 +6,7 @@ import Navigator from './config/routes';
 import store from './config/store';
 import reducers from './reducers';
 
+// Builds global variables for use through EStyleSheets
 EStyleSheet.build({
   $border: '#E2E2E2',
 
