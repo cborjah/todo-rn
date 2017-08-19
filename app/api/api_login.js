@@ -9,6 +9,7 @@ const getUserData = (username, password) => {
     /*
     Must return a PROMISE (response.json()) for redux-promise-middlware to work.
     */
+    // console.log(response.json());
     return response.json();
   }).catch(error => console.log(error));
 };

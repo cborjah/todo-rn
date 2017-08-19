@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 // Mock data
-import { todos } from '../data/mock_data';
+// import { todos } from '../data/mock_data';
 
 import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
@@ -29,7 +29,7 @@ class Todos extends Component {
       <View style={{ flex: 1 }}>
         <TitleBar text="Todos" canCreate onPress={this.handleCreatePress} />
         <FlatList
-          data={todos}
+          data={this.props.todos}
           renderItem={({ item }) => (
             <ListItem
               onPress={() => this.handleTodoPress(item)}

@@ -48,7 +48,7 @@ const users = {
   '/clearLists': {
     post: (req, res) => {
       User.findOneAndUpdate(
-        { _id: '59951db7be83df485db8578e' },
+        { _id: '59978a3a84e3bc70c5116641' },
         { $set: { lists: [] } },
         (err, data) => {
           if (err) {
@@ -62,26 +62,12 @@ const users = {
   },
   '/createTodo': {
     post: (req, res) => {
-      User.findOneAndUpdate(
-        { '_id': req.body.userId, 'lists.name': req.body.listName },
-        { '$push': { 'lists.0.todos': { 'todo': req.body.todo, 'status': 'open' } } },
-        (err, data) => {
-          // console.log(data);
-          res.json(data);
-        }
-      );
-
-      // User.find(
-      //   { _id: req.body.userId },
-      //   { lists: { $elemMatch: { name: req.body.listName } } },
-      //   (err, data) => {
-      //     // console.log(data);
-      //     data[0].lists[0].todos.push({ todo: req.body.todo, status: 'open' });
-      //     res.json(data);
-      //   }
-      // );
-    }
-  }
+      // Finds user's document
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.addTodo(req.body.listName, req.body.todo);
+      });
+    },
+  },
 };
 
 module.exports = users;

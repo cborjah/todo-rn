@@ -15,16 +15,17 @@ export default function (state = INITIAL_STATE, action) {
 
   switch (action.type) {
     case LOGIN_FULFILLED:
+      console.log(action.payload);
       return { ...state, lists: action.payload.lists, userId: action.payload._id };
 
     case LOGIN_REJECTED:
-      return { state, error: true };
+      return { ...state, error: true };
 
     case ADD_LIST_FULFILLED:
       return { ...state, lists: action.payload.lists };
 
     case ADD_LIST_REJECTED:
-      return { state, error: true };
+      return { ...state, error: true };
 
     // case ADD_TODO:
       // plan is to push new todo object into the active list's todos array
