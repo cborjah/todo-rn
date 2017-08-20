@@ -6,6 +6,7 @@ import {
   SELECT_TODO,
   CHANGE_TODO,
   CHANGE_TODO_STATUS,
+  DELETE_TODO,
 } from './types';
 
 // fetch calls to the API
@@ -14,6 +15,7 @@ import createList from '../api/api_createList';
 import createTodo from '../api/api_createTodo';
 import changeTodo from '../api/api_changeTodo';
 import changeTodoStatus from '../api/api_changeTodoStatus';
+import deleteTodo from '../api/api_deleteTodo';
 
 /*
 redux-promise-middleware allows you to pass a promise as the payload. In this
@@ -64,4 +66,9 @@ export const editTodo = (userId, newTodo, listIndex, todoIndex) => ({
 export const editTodoStatus = (userId, newStatus, listIndex, todoIndex) => ({
   type: CHANGE_TODO_STATUS,
   payload: changeTodoStatus(userId, newStatus, listIndex, todoIndex),
+});
+
+export const removeTodo = (userId, listIndex, todoIndex) => ({
+  type: DELETE_TODO,
+  payload: deleteTodo(userId, listIndex, todoIndex),
 });

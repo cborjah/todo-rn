@@ -99,8 +99,19 @@ const users = {
             res.status(200).send(updatedDoc);
           });
       });
-    }
-  }
+    },
+  },
+  '/deleteTodo': {
+    post: (req, res) => {
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.deleteTodo(req.body.listIndex, req.body.todoIndex)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
+      });
+    },
+  },
 };
 
 module.exports = users;

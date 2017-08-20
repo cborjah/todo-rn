@@ -36,7 +36,7 @@ UserSchema.methods.addTodo = function addTodo(listName, todo) {
 };
 
 UserSchema.methods.changeTodo = function changeTodo(listIndex, todoIndex, newTodo) {
-  console.log(`in change todo model method: ${listIndex}, ${todoIndex}`);
+  // console.log(`in change todo model method: ${listIndex}, ${todoIndex}`);
 
   this.lists[listIndex].todos[todoIndex].todo = newTodo;
   this.markModified('lists');
@@ -50,9 +50,22 @@ UserSchema.methods.changeTodo = function changeTodo(listIndex, todoIndex, newTod
 };
 
 UserSchema.methods.changeTodoStatus = function changeTodoStatus(listIndex, todoIndex, newStatus) {
-  console.log(`in change todo model method: ${listIndex}, ${todoIndex}, ${newStatus}`);
+  // console.log(`in change todo model method: ${listIndex}, ${todoIndex}, ${newStatus}`);
 
   this.lists[listIndex].todos[todoIndex].status = newStatus;
+  this.markModified('lists');
+
+  return this.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+    return this;
+  });
+};
+
+UserSchema.methods.deleteTodo = function deleteTodo(listIndex, todoIndex) {
+  console.log(`in change todo model method: ${listIndex}, ${todoIndex}`);
+  this.lists[listIndex].todos.splice(todoIndex, 1);
   this.markModified('lists');
 
   return this.save((err) => {
