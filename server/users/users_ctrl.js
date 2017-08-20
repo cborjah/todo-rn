@@ -75,7 +75,18 @@ const users = {
       // Finds user's document
       User.findOne({ _id: req.body.userId }, (err, user) => {
         user.addTodo(req.body.listName, req.body.todo)
-          .then((updatedDoc) => res.status(200).send(updatedDoc));
+          .then(updatedDoc => res.status(200).send(updatedDoc));
+      });
+    },
+  },
+  '/changeTodo': {
+    post: (req, res) => {
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.changeTodo(req.body.listIndex, req.body.todoIndex, req.body.newTodo)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
       });
     },
   },

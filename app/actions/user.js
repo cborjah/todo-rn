@@ -11,6 +11,7 @@ import {
 import getUserData from '../api/api_login';
 import createList from '../api/api_createList';
 import createTodo from '../api/api_createTodo';
+import changeTodo from '../api/api_changeTodo';
 
 /*
 redux-promise-middleware allows you to pass a promise as the payload. In this
@@ -51,9 +52,9 @@ export const selectList = listName => ({
 export const selectTodo = todo => ({
   type: SELECT_TODO,
   payload: todo,
-};
+});
 
-export const changeTodo = () => ({
+export const editTodo = (userId, newTodo, listIndex, todoIndex) => ({
   type: CHANGE_TODO,
-  payload:
-})
+  payload: changeTodo(userId, newTodo, listIndex, todoIndex),
+});

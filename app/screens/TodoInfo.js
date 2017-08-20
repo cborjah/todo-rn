@@ -3,7 +3,10 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
+import { editTodo } from '../actions/user';
+
 import { Container } from '../components/Container';
+import { BackButton } from '../components/Buttons';
 
 const styles = EStyleSheet.create({
   buttonContainer: {
@@ -47,15 +50,13 @@ class TodoInfo extends Component {
     super(props);
 
     this.state = {
-      todo: 'Wash Car',
+      todo: null,
       editable: false,
     };
   }
 
-  componentDidMount() {
-    // Set value todo to equal the name of the task selected,
-    // name of task will be passed in through props.
-    // this.setState({ todo: this.props.todo })
+  componentWillMount() {
+    this.setState({ todo: this.props.todo.todo });
   }
 
   handleCompletePress = () => {
@@ -68,21 +69,31 @@ class TodoInfo extends Component {
       editable: !prevState.editable
     }));
 
-    if (this.state.editable) {
-      
+    /*
+    Check to see if edited state, todo, is different from todo passed in from props.
+    If so, update database with new todo.
+    */
+    const { userId, activeListIndex, activeTodoIndex } = this.props;
+    if (this.state.editable && this.state.todo !== this.props.todo.todo) {
+      this.props.editTodo(userId, this.state.todo, activeListIndex, activeTodoIndex);
     }
+  }
+
+  handleBackButtonPress = () => {
+    this.props.navigation.goBack(null);
   }
 
   render() {
     return (
       <Container>
+        <BackButton onPress={this.handleBackButtonPress} />
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            value={this.props.todo.todo}
+            value={this.state.todo}
             spellCheck={false}
             editable={this.state.editable}
-            onChangeText={text => this.setState({ listName: text })}
+            onChangeText={text => this.setState({ todo: text })}
           />
         </View>
         <Text style={styles.status}>Status: {this.props.todo.status}</Text>
@@ -104,7 +115,10 @@ class TodoInfo extends Component {
 const mapStateToProps = (state) => {
   return {
     todo: state.userData.activeTodo,
+    userId: state.userData.userId,
+    activeListIndex: state.userData.activeListIndex,
+    activeTodoIndex: state.userData.activeTodoIndex,
   };
 };
 
-export default connect(mapStateToProps, null)(TodoInfo);
+export default connect(mapStateToProps, { editTodo })(TodoInfo);

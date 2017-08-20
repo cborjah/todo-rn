@@ -24,8 +24,8 @@ class Todos extends Component {
     this.props.navigation.navigate('CreateTodo');
   }
 
-  handleGoBack = () => {
-    this.prop.navigation.goBack(null);
+  handleBackButtonPress = () => {
+    this.props.navigation.goBack(null);
   }
 
   // Flatlist is using mock data until backend is worked out.
@@ -34,7 +34,7 @@ class Todos extends Component {
     return (
       <View style={{ flex: 1 }}>
         <TitleBar text="Todos" canCreate onPress={this.handleCreatePress} />
-        <BackButton onPress={this.handleGoBack} />
+        <BackButton onPress={this.handleBackButtonPress} />
         <FlatList
           data={this.props.todos}
           renderItem={({ item }) => (

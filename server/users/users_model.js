@@ -13,6 +13,7 @@ Do not declare methods using ES6 arrow functions (=>).
 Arrow functions explicitly prevent binding this, so the method will not
 have access to the document.
 */
+
 UserSchema.methods.addTodo = function addTodo(listName, todo) {
   for (let item of this.lists) {
     if (item.name === listName) {
@@ -32,6 +33,20 @@ UserSchema.methods.addTodo = function addTodo(listName, todo) {
       });
     }
   }
+};
+
+UserSchema.methods.changeTodo = function changeTodo(listIndex, todoIndex, newTodo) {
+  console.log(`in change todo model method: ${listIndex}, ${todoIndex}`);
+
+  this.lists[listIndex].todos[todoIndex].todo = newTodo;
+  this.markModified('lists');
+
+  return this.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+    return this;
+  });
 };
 
 module.exports = mongoose.model('User', UserSchema);
