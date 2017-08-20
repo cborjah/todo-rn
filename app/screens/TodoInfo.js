@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { View, Text, TouchableHighlight, TextInput } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Container } from '../components/Container';
 
@@ -66,6 +67,10 @@ class TodoInfo extends Component {
     this.setState((prevState, props) => ({
       editable: !prevState.editable
     }));
+
+    if (this.state.editable) {
+      
+    }
   }
 
   render() {
@@ -74,13 +79,13 @@ class TodoInfo extends Component {
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            value={this.state.todo}
+            value={this.props.todo.todo}
             spellCheck={false}
             editable={this.state.editable}
             onChangeText={text => this.setState({ listName: text })}
           />
         </View>
-        <Text style={styles.status}>Status: OPEN</Text>
+        <Text style={styles.status}>Status: {this.props.todo.status}</Text>
         <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.completed} onPress={this.handleCompletePress}>
             <Text style={styles.text}>COMPLETE</Text>
@@ -96,4 +101,10 @@ class TodoInfo extends Component {
   }
 }
 
-export default TodoInfo;
+const mapStateToProps = (state) => {
+  return {
+    todo: state.userData.activeTodo,
+  };
+};
+
+export default connect(mapStateToProps, null)(TodoInfo);

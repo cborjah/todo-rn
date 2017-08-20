@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
-// Mock data
-// import { todos } from '../data/mock_data';
+import { selectTodo } from '../actions/user';
 
 import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
+import { BackButton } from '../components/Buttons';
 
 class Todos extends Component {
   static propTypes = {
@@ -15,11 +15,17 @@ class Todos extends Component {
   }
 
   handleTodoPress = (todo) => {
+    // console.log(todo);
+    this.props.selectTodo(todo);
     this.props.navigation.navigate('TodoInfo');
   }
 
   handleCreatePress = () => {
     this.props.navigation.navigate('CreateTodo');
+  }
+
+  handleGoBack = () => {
+    this.prop.navigation.goBack(null);
   }
 
   // Flatlist is using mock data until backend is worked out.
@@ -28,11 +34,12 @@ class Todos extends Component {
     return (
       <View style={{ flex: 1 }}>
         <TitleBar text="Todos" canCreate onPress={this.handleCreatePress} />
+        <BackButton onPress={this.handleGoBack} />
         <FlatList
           data={this.props.todos}
           renderItem={({ item }) => (
             <ListItem
-              onPress={() => this.handleTodoPress(item)}
+              onPress={() => this.handleTodoPress(item.todo)}
               text={item.todo}
             />
           )}
@@ -50,4 +57,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Todos);
+export default connect(mapStateToProps, { selectTodo })(Todos);

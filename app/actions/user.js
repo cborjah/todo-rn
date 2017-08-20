@@ -3,6 +3,8 @@ import {
   ADD_LIST,
   ADD_TODO,
   SELECT_LIST,
+  SELECT_TODO,
+  CHANGE_TODO,
 } from './types';
 
 // fetch calls to the API
@@ -35,7 +37,7 @@ export const addList = (userId, listName) => {
 export const addTodo = (userId, todo, activeList) => {
   return {
     type: ADD_TODO,
-    payload: createTodo(userId, todo, activeList),
+    payload: createTodo(userId, todo, activeList.name),
   };
 }
 
@@ -45,3 +47,13 @@ export const selectList = listName => ({
   type: SELECT_LIST,
   payload: listName,
 });
+
+export const selectTodo = todo => ({
+  type: SELECT_TODO,
+  payload: todo,
+};
+
+export const changeTodo = () => ({
+  type: CHANGE_TODO,
+  payload:
+})

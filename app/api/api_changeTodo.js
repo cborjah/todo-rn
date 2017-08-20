@@ -1,10 +1,10 @@
-const createTodo = (userId, todo, listName) => {
+const changeTodo = (userId, newTodo, listName) => {
   return fetch('http://localhost:7700/createTodo', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: `userId=${userId}&todo=${todo}&listName=${listName}`,
+    body: `userId=${userId}&newTodo=${newTodo}&listName=${listName}`,
   })
     .then((response) => {
       return response.json();

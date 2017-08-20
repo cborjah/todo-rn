@@ -24,10 +24,11 @@ UserSchema.methods.addTodo = function addTodo(listName, todo) {
        */
       this.markModified('lists');
 
-      this.save((err) => {
+      return this.save((err) => {
         if (err) {
           console.log(err);
         }
+        return this;
       });
     }
   }

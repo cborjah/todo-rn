@@ -21,7 +21,15 @@ const users = {
             });
           } else {
             User.findOne({ username: req.body.username })
-              .then(data => res.status(200).json(data));
+              .then((data) => {
+                if (req.body.password === data.password) {
+                  res.status(200).json(data);
+                } else {
+                  res.status(200).send({
+                    msg: 'Incorrect Password.',
+                  });
+                }
+              });
           }
         })
         .catch((err) => {
@@ -62,9 +70,12 @@ const users = {
   },
   '/createTodo': {
     post: (req, res) => {
+      console.log('in createtodo route');
+      console.log(req.body);
       // Finds user's document
       User.findOne({ _id: req.body.userId }, (err, user) => {
-        user.addTodo(req.body.listName, req.body.todo);
+        user.addTodo(req.body.listName, req.body.todo)
+          .then((updatedDoc) => res.status(200).send(updatedDoc));
       });
     },
   },

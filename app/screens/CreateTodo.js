@@ -42,7 +42,7 @@ class CreateTodo extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     addTodo: PropTypes.func,
-    activeList: PropTypes.string,
+    activeList: PropTypes.object,
     userId: PropTypes.string,
   }
 
@@ -57,10 +57,11 @@ class CreateTodo extends Component {
   handleCreateTodo = () => {
     // Unfinished
     this.props.addTodo(this.props.userId, this.state.todo, this.props.activeList);
+    this.props.navigation.goBack(null);
   }
 
   handleCancel = () => {
-    console.log('cancel pressed');
+    this.props.navigation.goBack(null);
   }
 
   render() {
