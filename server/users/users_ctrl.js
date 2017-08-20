@@ -70,8 +70,8 @@ const users = {
   },
   '/createTodo': {
     post: (req, res) => {
-      console.log('in createtodo route');
-      console.log(req.body);
+      // console.log('in createtodo route');
+      // console.log(req.body);
       // Finds user's document
       User.findOne({ _id: req.body.userId }, (err, user) => {
         user.addTodo(req.body.listName, req.body.todo)
@@ -90,6 +90,17 @@ const users = {
       });
     },
   },
+  '/changeTodoStatus': {
+    post: (req, res) => {
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.changeTodoStatus(req.body.listIndex, req.body.todoIndex, req.body.newStatus)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
+      });
+    }
+  }
 };
 
 module.exports = users;

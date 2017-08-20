@@ -8,6 +8,7 @@ export const ADD_LIST_REJECTED = 'ADD_LIST_REJECTED';
 
 export const ADD_TODO = 'ADD_TODO';
 export const CHANGE_TODO = 'CHANGE_TODO';
+export const CHANGE_TODO_STATUS = 'CHANGE_TODO_STATUS';
 
 export const SELECT_LIST = 'SELECT_LIST';
 export const SELECT_TODO = 'SELECT_TODO';

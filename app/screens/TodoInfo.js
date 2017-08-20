@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
-import { editTodo } from '../actions/user';
+import { editTodo, editTodoStatus } from '../actions/user';
 
 import { Container } from '../components/Container';
 import { BackButton } from '../components/Buttons';
@@ -46,27 +46,51 @@ const styles = EStyleSheet.create({
 });
 
 class TodoInfo extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+    todo: PropTypes.object,
+    status: PropTypes.string,
+    userId: PropTypes.string,
+    activeListIndex: PropTypes.number,
+    activeTodoIndex: PropTypes.number,
+    editTodo: PropTypes.func,
+    editTodoStatus: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
       todo: null,
+      status: null,
       editable: false,
     };
   }
 
   componentWillMount() {
-    this.setState({ todo: this.props.todo.todo });
+    this.setState({ todo: this.props.todo.todo, status: this.props.todo.status });
   }
 
   handleCompletePress = () => {
-    console.log('pressed complete');
+    // console.log('pressed complete');
+    const { userId, activeListIndex, activeTodoIndex } = this.props;
+
+    if (this.state.status === 'OPEN') {
+      this.setState({ status: 'COMPLETED' }, () => {
+        this.props.editTodoStatus(userId, this.state.status, activeListIndex, activeTodoIndex);
+      });
+    }
+    if (this.state.status === 'COMPLETED') {
+      this.setState({ status: 'OPEN' }, () => {
+        this.props.editTodoStatus(userId, this.state.status, activeListIndex, activeTodoIndex);
+      });
+    }
   }
 
   // Toggles whether the text input is editable
   handleEditPress = () => {
     this.setState((prevState, props) => ({
-      editable: !prevState.editable
+      editable: !prevState.editable,
     }));
 
     /*
@@ -96,10 +120,12 @@ class TodoInfo extends Component {
             onChangeText={text => this.setState({ todo: text })}
           />
         </View>
-        <Text style={styles.status}>Status: {this.props.todo.status}</Text>
+        <Text style={styles.status}>Status: {this.state.status}</Text>
         <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.completed} onPress={this.handleCompletePress}>
-            <Text style={styles.text}>COMPLETE</Text>
+            <Text style={styles.text}>
+              {this.state.status === 'OPEN' ? 'COMPLETED' : 'OPEN'}
+            </Text>
           </TouchableHighlight>
         </View>
         <View style={styles.buttonContainer}>
@@ -121,4 +147,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { editTodo })(TodoInfo);
+export default connect(mapStateToProps, { editTodo, editTodoStatus })(TodoInfo);
