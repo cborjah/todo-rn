@@ -26,7 +26,6 @@ class Todos extends Component {
   }
 
   handleTodoPress = (todo) => {
-    // console.log(todo);
     this.props.selectTodo(todo);
     this.props.navigation.navigate('TodoInfo');
   }

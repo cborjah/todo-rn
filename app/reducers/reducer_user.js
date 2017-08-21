@@ -5,7 +5,14 @@ import {
   ADD_LIST_REJECTED,
   DELETE_LIST_FULFILLED,
   DELETE_LIST_REJECTED,
-  ADD_TODO,
+  ADD_TODO_FULFILLED,
+  ADD_TODO_REJECTED,
+  CHANGE_TODO_FULFILLED,
+  CHANGE_TODO_REJECTED,
+  CHANGE_TODO_STATUS_FULFILLED,
+  CHANGE_TODO_STATUS_REJECTED,
+  DELETE_TODO_FULFILLED,
+  DELETE_TODO_REJECTED,
   SELECT_LIST,
   SELECT_TODO,
   LOGOUT,
@@ -60,9 +67,31 @@ export default function (state = INITIAL_STATE, action) {
         }
       }
 
+    case ADD_TODO_FULFILLED:
+      return { ...state, activeList: action.payload.lists[state.activeListIndex] };
+
+    case ADD_TODO_REJECTED:
+      return { ...state, error: true };
+
+    case CHANGE_TODO_FULFILLED:
+      return { ...state, activeList: action.payload.lists[state.activeListIndex] };
+
+    case CHANGE_TODO_REJECTED:
+      return { ...state, error: true };
+
+    case CHANGE_TODO_STATUS_FULFILLED:
+      return { ...state, activeList: action.payload.lists[state.activeListIndex] };
+
+    case CHANGE_TODO_STATUS_REJECTED:
+      return { ...state, error: true };
+
+    case DELETE_TODO_FULFILLED:
+      return { ...state, activeList: action.payload.lists[state.activeListIndex] };
+
+    case DELETE_TODO_REJECTED:
+      return { ...state, error: true };
+
     case SELECT_TODO:
-      console.log(`in select todo reducer`);
-      console.log(state.activeList);
       const todos = state.activeList.todos;
       for (let i = 0; i < todos.length; i++) {
         if (todos[i].todo === action.payload) {

@@ -102,7 +102,6 @@ const users = {
       User.findOne({ _id: req.body.userId }, (err, user) => {
         user.changeTodo(req.body.listIndex, req.body.todoIndex, req.body.newTodo)
           .then((updatedDoc) => {
-            console.log(updatedDoc);
             res.status(200).send(updatedDoc);
           });
       });
@@ -113,7 +112,6 @@ const users = {
       User.findOne({ _id: req.body.userId }, (err, user) => {
         user.changeTodoStatus(req.body.listIndex, req.body.todoIndex, req.body.newStatus)
           .then((updatedDoc) => {
-            console.log(updatedDoc);
             res.status(200).send(updatedDoc);
           });
       });
@@ -124,7 +122,6 @@ const users = {
       User.findOne({ _id: req.body.userId }, (err, user) => {
         user.deleteTodo(req.body.listIndex, req.body.todoIndex)
           .then((updatedDoc) => {
-            console.log(updatedDoc);
             res.status(200).send(updatedDoc);
           });
       });
