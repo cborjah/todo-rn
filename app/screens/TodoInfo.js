@@ -59,8 +59,8 @@ class TodoInfo extends Component {
     }));
 
     /*
-    Check to see if edited todo state is different from the todo passed in from props.
-    If so, update database with new todo.
+    Check to see if edited todo state is different from the todo passed in
+    through the props. If so, update database with new todo.
     */
     const { userId, activeListIndex, activeTodoIndex } = this.props;
 

@@ -2,9 +2,10 @@ import { StackNavigator } from 'react-navigation';
 
 import Login from '../screens/Login';
 import Lists from '../screens/Lists';
+import ListInfo from '../screens/ListInfo';
+import CreateList from '../screens/CreateList';
 import Todos from '../screens/Todos';
 import TodoInfo from '../screens/TodoInfo';
-import CreateList from '../screens/CreateList';
 import CreateTodo from '../screens/CreateTodo';
 
 export default StackNavigator({
@@ -20,6 +21,12 @@ export default StackNavigator({
       header: () => null,
     },
   },
+  ListInfo: {
+    screen: ListInfo,
+  },
+  CreateList: {
+    screen: CreateList,
+  },
   Todos: {
     screen: Todos,
     navigationOptions: {
@@ -28,9 +35,6 @@ export default StackNavigator({
   },
   TodoInfo: {
     screen: TodoInfo,
-  },
-  CreateList: {
-    screen: CreateList,
   },
   CreateTodo: {
     screen: CreateTodo,

@@ -3,6 +3,7 @@ import {
   ADD_LIST,
   ADD_TODO,
   SELECT_LIST,
+  CHANGE_LIST_NAME,
   SELECT_TODO,
   CHANGE_TODO,
   CHANGE_TODO_STATUS,
@@ -16,6 +17,7 @@ import createTodo from '../api/api_createTodo';
 import changeTodo from '../api/api_changeTodo';
 import changeTodoStatus from '../api/api_changeTodoStatus';
 import deleteTodo from '../api/api_deleteTodo';
+import changeListName from '../api/api_changeListName';
 
 /*
 redux-promise-middleware allows you to pass a promise as the payload. In this
@@ -44,7 +46,7 @@ export const addTodo = (userId, todo, activeList) => {
     type: ADD_TODO,
     payload: createTodo(userId, todo, activeList.name),
   };
-}
+};
 
 // Passes the name of the selected list to the reducer in order to set
 // the activeList state.
@@ -56,6 +58,11 @@ export const selectList = listName => ({
 export const selectTodo = todo => ({
   type: SELECT_TODO,
   payload: todo,
+});
+
+export const editListName = (userId, newListName, listIndex) => ({
+  type: CHANGE_LIST_NAME,
+  payload: changeListName(userId, newListName, listIndex),
 });
 
 export const editTodo = (userId, newTodo, listIndex, todoIndex) => ({

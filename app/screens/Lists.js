@@ -56,6 +56,12 @@ class Lists extends Component {
     // this.props.navigation.dispatch(resetNavigationStack);
   }
 
+  handleEditPress = (item) => {
+    console.log(item.name);
+    this.props.selectList(item.name)
+    this.props.navigation.navigate('ListInfo');
+  }
+
   // renderScrollView = () => {
   //   return this.state.dataSource.map((item, index) => {
   //     return (
@@ -85,7 +91,9 @@ class Lists extends Component {
           renderItem={({ item }) => (
             <ListItem
               onPress={() => this.handleListPress(item)}
+              onEditPress={() => this.handleEditPress(item)}
               text={item.name}
+              canEdit
             />
           )}
           keyExtractor={item => item.name}
@@ -96,10 +104,8 @@ class Lists extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    lists: state.userData.lists,
-  };
-};
+const mapStateToProps = state => ({
+  lists: state.userData.lists,
+});
 
 export default connect(mapStateToProps, { selectList })(Lists);

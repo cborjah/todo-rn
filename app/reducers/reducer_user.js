@@ -50,6 +50,7 @@ export default function (state = INITIAL_STATE, action) {
       //     return { ...state, activeList: item };
       //   }
       // }
+      console.log(`in select list reducer`);
       const lists = state.lists;
       for(let i = 0; i < lists.length; i++) {
         if (lists[i].name === action.payload) {

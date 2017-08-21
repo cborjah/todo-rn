@@ -18,7 +18,13 @@ export default EStyleSheet.create({
   text: {
     fontSize: 20,
   },
-  arrow: {
+  button: {
     fontSize: 20,
+    paddingHorizontal: 5,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
