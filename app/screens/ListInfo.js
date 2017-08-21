@@ -3,7 +3,7 @@ import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
-import { editListName } from '../actions/user';
+import { editListName, removeList } from '../actions/user';
 
 import { Container } from '../components/Container';
 import { BackButton } from '../components/Buttons';
@@ -15,6 +15,7 @@ class ListInfo extends Component {
     list: PropTypes.array,
     userId: PropTypes.string,
     activeListIndex: PropTypes.number,
+    removeList: PropTypes.func,
   };
 
   constructor(props) {
@@ -56,11 +57,11 @@ class ListInfo extends Component {
   }
 
   handleDeletePress = () => {
-    // const { userId, activeListIndex, activeTodoIndex } = this.props;
-    // this.props.removeTodo(userId, activeListIndex, activeTodoIndex);
+    const { userId, activeListIndex } = this.props;
+    this.props.removeList(userId, activeListIndex);
 
     // Return to lists screen after deletion
-    this.props.navigation.goBack(null);
+    // this.props.navigation.goBack(null);
   }
 
   handleBackButtonPress = () => {
@@ -145,4 +146,4 @@ const mapStateToProps = state => ({
   activeListIndex: state.userData.activeListIndex,
 });
 
-export default connect(mapStateToProps, { editListName })(ListInfo);
+export default connect(mapStateToProps, { editListName, removeList })(ListInfo);

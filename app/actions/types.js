@@ -6,6 +6,7 @@ export const ADD_LIST = 'ADD_LIST';
 export const ADD_LIST_FULFILLED = 'ADD_LIST_FULFILLED';
 export const ADD_LIST_REJECTED = 'ADD_LIST_REJECTED';
 export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
+export const DELETE_LIST = 'DELETE_LIST';
 
 export const ADD_TODO = 'ADD_TODO';
 export const CHANGE_TODO = 'CHANGE_TODO';

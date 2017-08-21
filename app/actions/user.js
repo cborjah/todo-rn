@@ -4,6 +4,7 @@ import {
   ADD_TODO,
   SELECT_LIST,
   CHANGE_LIST_NAME,
+  DELETE_LIST,
   SELECT_TODO,
   CHANGE_TODO,
   CHANGE_TODO_STATUS,
@@ -13,11 +14,12 @@ import {
 // fetch calls to the API
 import getUserData from '../api/api_login';
 import createList from '../api/api_createList';
+import changeListName from '../api/api_changeListName';
+import deleteList from '../api/api_deleteList';
 import createTodo from '../api/api_createTodo';
 import changeTodo from '../api/api_changeTodo';
 import changeTodoStatus from '../api/api_changeTodoStatus';
 import deleteTodo from '../api/api_deleteTodo';
-import changeListName from '../api/api_changeListName';
 
 /*
 redux-promise-middleware allows you to pass a promise as the payload. In this
@@ -55,14 +57,19 @@ export const selectList = listName => ({
   payload: listName,
 });
 
-export const selectTodo = todo => ({
-  type: SELECT_TODO,
-  payload: todo,
-});
-
 export const editListName = (userId, newListName, listIndex) => ({
   type: CHANGE_LIST_NAME,
   payload: changeListName(userId, newListName, listIndex),
+});
+
+export const removeList = (userId, listIndex) => ({
+  type: DELETE_LIST,
+  payload: deleteList(userId, listIndex),
+});
+
+export const selectTodo = todo => ({
+  type: SELECT_TODO,
+  payload: todo,
 });
 
 export const editTodo = (userId, newTodo, listIndex, todoIndex) => ({

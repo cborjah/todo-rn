@@ -52,6 +52,28 @@ const users = {
       );
     },
   },
+  '/changeListName': {
+    post: (req, res) => {
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.changeListName(req.body.listIndex, req.body.newListName)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
+      });
+    }
+  },
+  '/deleteList': {
+    post: (req, res) => {
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.deleteList(req.body.listIndex)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
+      });
+    }
+  },
   // For debugging purposes
   '/clearLists': {
     post: (req, res) => {

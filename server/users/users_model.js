@@ -76,4 +76,34 @@ UserSchema.methods.deleteTodo = function deleteTodo(listIndex, todoIndex) {
   });
 };
 
+UserSchema.methods.changeListName = function changeListName(listIndex, newListName) {
+  // console.log(`in change changeListName model method: ${listIndex}, ${newListName}`);
+  // console.log(this.lists[listIndex]);
+  this.lists[listIndex].name = newListName;
+  // console.log(this.lists[listIndex]);
+  this.markModified('lists');
+
+  return this.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+    return this;
+  });
+};
+
+UserSchema.methods.deleteList = function deleteList(listIndex) {
+  console.log(`in deleteList model method: ${listIndex}`);
+  console.log(this.lists);
+  this.lists.splice(listIndex, 1);
+  console.log(this.lists);
+  this.markModified('lists');
+
+  return this.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+    return this;
+  });
+};
+
 module.exports = mongoose.model('User', UserSchema);
