@@ -12,7 +12,7 @@ class ListInfo extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     editListName: PropTypes.func,
-    list: PropTypes.array,
+    list: PropTypes.object,
     userId: PropTypes.string,
     activeListIndex: PropTypes.number,
     removeList: PropTypes.func,
@@ -65,11 +65,11 @@ class ListInfo extends Component {
     this.props.removeList(userId, activeListIndex);
 
     // Return to lists screen after deletion
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   handleBackButtonPress = () => {
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   render() {

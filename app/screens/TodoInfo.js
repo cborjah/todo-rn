@@ -85,11 +85,11 @@ class TodoInfo extends Component {
     this.props.removeTodo(userId, activeListIndex, activeTodoIndex);
 
     // Return to todos screen after deletion
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   handleBackButtonPress = () => {
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   render() {

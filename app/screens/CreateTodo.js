@@ -26,11 +26,11 @@ class CreateTodo extends Component {
   handleCreateTodo = () => {
     // Unfinished
     this.props.addTodo(this.props.userId, this.state.todo, this.props.activeList);
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   handleCancel = () => {
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   render() {

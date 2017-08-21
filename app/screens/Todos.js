@@ -35,7 +35,7 @@ class Todos extends Component {
   }
 
   handleBackButtonPress = () => {
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   filterTodos = () => {
@@ -76,7 +76,7 @@ class Todos extends Component {
               text={item.todo}
             />
           )}
-          keyExtractor={({ item }) => item}
+          keyExtractor={item => item.todo}
           ItemSeparatorComponent={Separator}
         />
         <View style={styles.footer}>

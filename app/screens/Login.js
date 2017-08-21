@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { View, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/user';
@@ -43,7 +43,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Container>
+      <Container backgroundColor='#66BB6A'>
         <KeyboardAvoidingView behavior="padding">
           <Header />
           <View style={styles.container}>
@@ -75,7 +75,8 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     width: '80%',
     marginVertical: 10,
-    backgroundColor: 'grey',
+    backgroundColor: 'transparent',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   input: {
     flex: 1,

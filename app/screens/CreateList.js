@@ -25,11 +25,11 @@ class CreateList extends Component {
 
   handleCreateList = () => {
     this.props.addList(this.props.userId, this.state.listName);
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   handleCancel = () => {
-    this.props.navigation.goBack(null);
+    this.props.navigation.goBack();
   }
 
   render() {

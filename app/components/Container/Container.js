@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import styles from './styles';
 
-const Container = ({ children }) => (
-  <View style={styles.container}>
+const Container = ({ children, backgroundColor }) => (
+  <View style={[styles.container, { backgroundColor: backgroundColor }]}>
     {children}
   </View>
 );
