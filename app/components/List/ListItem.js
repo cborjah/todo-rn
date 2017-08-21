@@ -39,7 +39,7 @@ const ListItem = ({ text, onPress, canEdit, onEditPress }) => (
 ListItem.propTypes = {
   text: PropTypes.string,
   onPress: PropTypes.func,
-  canEdit: PropTypes.boolean,
+  canEdit: PropTypes.bool,
   onEditPress: PropTypes.func,
 };
 
