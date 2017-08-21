@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, TextInput } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
@@ -143,6 +143,9 @@ const styles = EStyleSheet.create({
   status: {
     fontSize: 20,
   },
+  text: {
+    letterSpacing: 2,
+  }
 });
 
 const mapStateToProps = state => ({

@@ -19,7 +19,7 @@ export default EStyleSheet.create({
     fontSize: 20,
   },
   button: {
-    fontSize: 20,
+    fontSize: 15,
     paddingHorizontal: 5,
   },
   buttonContainer: {
@@ -27,4 +27,10 @@ export default EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  editButton: {
+    marginRight: 5,
+    backgroundColor: 'transparent',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 2,
+  }
 });

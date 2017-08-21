@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, TextInput } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
@@ -24,8 +24,10 @@ class CreateList extends Component {
   }
 
   handleCreateList = () => {
-    this.props.addList(this.props.userId, this.state.listName);
-    this.props.navigation.goBack();
+    if (this.state.listName !== null) {
+      this.props.addList(this.props.userId, this.state.listName);
+      this.props.navigation.goBack();
+    }
   }
 
   handleCancel = () => {
@@ -67,14 +69,16 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     marginBottom: 10,
-    backgroundColor: 'green',
+    backgroundColor: '$buttonGreen',
+    borderRadius: 2,
   },
   cancel: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
     marginTop: 10,
-    backgroundColor: 'red',
+    backgroundColor: '$buttonRed',
+    borderRadius: 2,
   },
   container: {
     flexDirection: 'row',
@@ -85,6 +89,10 @@ const styles = EStyleSheet.create({
     flex: 1,
     paddingVertical: 5,
     paddingHorizontal: 8,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  text: {
+    letterSpacing: 2,
   },
 });
 

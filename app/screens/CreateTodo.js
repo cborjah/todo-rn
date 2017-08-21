@@ -36,11 +36,11 @@ class CreateTodo extends Component {
   render() {
     return (
       <Container>
-        <CreateText text="Add Task" />
+        <CreateText text="Add Todo" />
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            placeholder="Enter a task"
+            placeholder="Enter todo"
             spellCheck={false}
             onChangeText={text => this.setState({ todo: text })}
           />
@@ -62,20 +62,21 @@ const styles = EStyleSheet.create({
   buttonContainer: {
     width: '80%',
     marginTop: 15,
+    borderRadius: 2,
   },
   create: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
     marginBottom: 10,
-    backgroundColor: 'green',
+    backgroundColor: '$buttonGreen',
   },
   cancel: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
     marginTop: 10,
-    backgroundColor: 'red',
+    backgroundColor: '$buttonRed',
   },
   container: {
     flexDirection: 'row',
@@ -86,6 +87,10 @@ const styles = EStyleSheet.create({
     flex: 1,
     paddingVertical: 5,
     paddingHorizontal: 8,
+    borderRadius: 2,
+  },
+  text: {
+    letterSpacing: 2,
   },
 });
 

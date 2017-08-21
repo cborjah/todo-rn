@@ -17,5 +17,6 @@ export default EStyleSheet.create({
   },
   createText: {
     fontSize: 40,
+    letterSpacing: 2,
   },
 });
