@@ -3,6 +3,8 @@ import {
   LOGIN_REJECTED,
   ADD_LIST_FULFILLED,
   ADD_LIST_REJECTED,
+  CHANGE_LIST_NAME_FULFILLED,
+  CHANGE_LIST_NAME_REJECTED,
   DELETE_LIST_FULFILLED,
   DELETE_LIST_REJECTED,
   ADD_TODO_FULFILLED,
@@ -18,8 +20,14 @@ import {
   LOGOUT,
 } from '../actions/types';
 
-// userId is saved in the store and passed to components that need to
-// retrieve data from the backend.
+/*
+ userId is saved in the store and passed to components that need to
+ retrieve data from the backend.
+ activeList and activeTodo act as a cache for certain components in order to
+ render data quickly while the database is updated.
+ Cases with the _FULFILLED or _REJECTED appended on is explained in the user
+ actions file.
+*/
 const INITIAL_STATE = {
   lists: [],
   activeList: null,
@@ -31,6 +39,7 @@ const INITIAL_STATE = {
   // error state is not used in the app at this moment
   error: false,
 };
+
 
 export default function (state = INITIAL_STATE, action) {
 
@@ -66,6 +75,12 @@ export default function (state = INITIAL_STATE, action) {
           return { ...state, activeList: lists[i], activeListIndex: i };
         }
       }
+
+    case CHANGE_LIST_NAME_FULFILLED:
+      return { ...state, lists: action.payload.lists };
+
+    case CHANGE_LIST_NAME_REJECTED:
+      return { ...state, error: true };
 
     case ADD_TODO_FULFILLED:
       return { ...state, activeList: action.payload.lists[state.activeListIndex] };

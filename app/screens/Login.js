@@ -35,7 +35,7 @@ class Login extends Component {
     };
   }
 
-  // Still need to implement form validation
+  // Still need to implement more form validation and error handling
   handleLogin = () => {
     this.props.loginUser(this.state.username, this.state.password)
       .then(() => this.props.navigation.dispatch(resetNavigationStack));
