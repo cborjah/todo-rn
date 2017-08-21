@@ -23,10 +23,19 @@ export default EStyleSheet.create({
     fontSize: 25,
     paddingHorizontal: 5,
   },
-  BackButtonContainer: {
+  backButtonContainer: {
     position: 'absolute',
     top: 25,
     left: 8,
     // paddingHorizontal: 5,
+  },
+  logoutButtonContainer: {
+    position: 'absolute',
+    top: 30,
+    left: 10,
+  },
+  logout: {
+    color: 'white',
+    fontSize: 20,
   },
 });

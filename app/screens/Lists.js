@@ -1,19 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-// import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
-import { selectList } from '../actions/user';
+import { selectList, logout } from '../actions/user';
 
 import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
+import { LogoutButton } from '../components/Buttons';
 
-// const resetNavigationStack = NavigationActions.reset({
-//   index: 0,
-//   actions: [
-//     NavigationActions.navigate({ routeName: 'CreateList' }),
-//   ],
-// });
+const returnToLoginScreen = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Home' }),
+  ],
+});
 
 class Lists extends Component {
   static propTypes = {
@@ -62,6 +63,12 @@ class Lists extends Component {
     this.props.navigation.navigate('ListInfo');
   }
 
+  handleLogoutPress = () => {
+    // console.log(`logout pressed`);
+    this.props.logout();
+    this.props.navigation.dispatch(returnToLoginScreen);
+  }
+
   // renderScrollView = () => {
   //   return this.state.dataSource.map((item, index) => {
   //     return (
@@ -81,7 +88,8 @@ class Lists extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TitleBar text="Todo Lists" canCreate onPress={this.handleCreatePress} />
+        <TitleBar text="Lists" canCreate onPress={this.handleCreatePress} />
+        <LogoutButton onPress={this.handleLogoutPress} />
         {/* <ScrollView>
           {this.renderScrollView()}
         </ScrollView> */}
@@ -108,4 +116,4 @@ const mapStateToProps = state => ({
   lists: state.userData.lists,
 });
 
-export default connect(mapStateToProps, { selectList })(Lists);
+export default connect(mapStateToProps, { selectList, logout })(Lists);

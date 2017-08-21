@@ -9,6 +9,7 @@ import {
   CHANGE_TODO,
   CHANGE_TODO_STATUS,
   DELETE_TODO,
+  LOGOUT,
 } from './types';
 
 // fetch calls to the API
@@ -85,4 +86,8 @@ export const editTodoStatus = (userId, newStatus, listIndex, todoIndex) => ({
 export const removeTodo = (userId, listIndex, todoIndex) => ({
   type: DELETE_TODO,
   payload: deleteTodo(userId, listIndex, todoIndex),
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });

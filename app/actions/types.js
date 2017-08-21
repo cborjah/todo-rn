@@ -15,3 +15,5 @@ export const DELETE_TODO = 'DELETE_TODO';
 
 export const SELECT_LIST = 'SELECT_LIST';
 export const SELECT_TODO = 'SELECT_TODO';
+
+export const LOGOUT = 'LOGOUT';

@@ -3,18 +3,18 @@ import { Text, TouchableHighlight } from 'react-native';
 
 import styles from './styles';
 
-const BackButton = ({ onPress }) => (
+const LogoutButton = ({ onPress }) => (
   <TouchableHighlight
-    style={styles.backButtonContainer}
+    style={styles.logoutButtonContainer}
     underlayColor={styles.$underlayColor}
     onPress={onPress}
   >
-    <Text style={styles.lessThan}>{'<'}</Text>
+    <Text style={styles.logout}>{'Logout'}</Text>
   </TouchableHighlight>
 );
 
-BackButton.propTypes = {
+LogoutButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-export default BackButton;
+export default LogoutButton;

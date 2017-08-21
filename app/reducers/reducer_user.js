@@ -6,6 +6,7 @@ import {
   ADD_TODO,
   SELECT_LIST,
   SELECT_TODO,
+  LOGOUT,
 } from '../actions/types';
 
 // userId is saved in the store and passed to components that need to
@@ -72,6 +73,17 @@ export default function (state = INITIAL_STATE, action) {
           return { ...state, activeTodo: todos[i], activeTodoIndex: i };
         }
       }
+
+    case LOGOUT:
+      return {
+        ...state,
+        lists: [],
+        activeList: null,
+        activeListIndex: null,
+        activeTodo: null,
+        activeTodoIndex: null,
+        userId: null,
+      };
 
     default:
       return state;
