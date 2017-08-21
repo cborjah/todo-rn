@@ -56,7 +56,11 @@ class TodoInfo extends Component {
   handleEditPress = () => {
     this.setState((prevState, props) => ({
       editable: !prevState.editable,
-    }));
+    }), () => {
+      if (this.state.editable) {
+        this.refs.textInput.focus();
+      }
+    });
 
     /*
     Check to see if edited todo state is different from the todo passed in
@@ -94,6 +98,7 @@ class TodoInfo extends Component {
         <BackButton onPress={this.handleBackButtonPress} />
         <View style={styles.container}>
           <TextInput
+            ref="textInput"
             style={styles.input}
             value={this.state.todo}
             spellCheck={false}

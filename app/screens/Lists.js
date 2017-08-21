@@ -21,30 +21,8 @@ class Lists extends Component {
     navigation: PropTypes.object,
     selectList: PropTypes.func,
     lists: PropTypes.array,
+    logout: PropTypes.func,
   }
-
-  constructor(props) {
-    super(props);
-
-    // const ds = new ListView.DataSource()
-
-    this.state = {
-      dataSource: null,
-    };
-  }
-
-  componentWillMount() {
-    this.setState({ dataSource: this.props.lists });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // const oldDataSourceCopy = Object.assign({}, this.state.report);
-    this.setState({ dataSource: nextProps.lists });
-  }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return true;
-  // }
 
   // Dispatches action to set the activeList in store
   handleListPress = (item) => {
@@ -54,48 +32,25 @@ class Lists extends Component {
 
   handleCreatePress = () => {
     this.props.navigation.navigate('CreateList');
-    // this.props.navigation.dispatch(resetNavigationStack);
   }
 
   handleEditPress = (item) => {
-    console.log(item.name);
-    this.props.selectList(item.name)
+    this.props.selectList(item.name);
     this.props.navigation.navigate('ListInfo');
   }
 
   handleLogoutPress = () => {
-    // console.log(`logout pressed`);
     this.props.logout();
     this.props.navigation.dispatch(returnToLoginScreen);
   }
 
-  // renderScrollView = () => {
-  //   return this.state.dataSource.map((item, index) => {
-  //     return (
-  //       <ListItem
-  //         key={index}
-  //         onPress={() => this.handleListPress(item)}
-  //         text={item.name}
-  //       />
-  //     );
-  //   })
-  // }
-
-  /*
-  FlatList not rerendering on props update. The extraData prop may be solution
-  to fixing this but haven't figured it out yet.
-  */
   render() {
     return (
       <View style={{ flex: 1 }}>
         <TitleBar text="Lists" canCreate onPress={this.handleCreatePress} />
         <LogoutButton onPress={this.handleLogoutPress} />
-        {/* <ScrollView>
-          {this.renderScrollView()}
-        </ScrollView> */}
         <FlatList
-          data={this.state.dataSource}
-          extraData={this.state.dataSource.length}
+          data={this.props.lists}
           renderItem={({ item }) => (
             <ListItem
               onPress={() => this.handleListPress(item)}

@@ -3,6 +3,8 @@ import {
   LOGIN_REJECTED,
   ADD_LIST_FULFILLED,
   ADD_LIST_REJECTED,
+  DELETE_LIST_FULFILLED,
+  DELETE_LIST_REJECTED,
   ADD_TODO,
   SELECT_LIST,
   SELECT_TODO,
@@ -18,6 +20,9 @@ const INITIAL_STATE = {
   activeTodo: null,
   activeTodoIndex: null,
   userId: null,
+
+  // error state is not used in the app at this moment
+  error: false,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -31,14 +36,16 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, error: true };
 
     case ADD_LIST_FULFILLED:
-      const updatedLists = action.payload.lists.slice();
-      return { ...state, lists: updatedLists };
+      return { ...state, lists: action.payload.lists };
 
     case ADD_LIST_REJECTED:
       return { ...state, error: true };
 
-    // case ADD_TODO:
-      // plan is to push new todo object into the active list's todos array
+    case DELETE_LIST_FULFILLED:
+      return { ...state, lists: action.payload.lists };
+
+    case DELETE_LIST_REJECTED:
+      return { ...state, error: true };
 
     case SELECT_LIST:
       /*
@@ -46,17 +53,9 @@ export default function (state = INITIAL_STATE, action) {
        activeList equal to it. This is so the newly created todos are added
        to the correct list.
       */
-      // for (let item of state.lists) {
-      //   if (item.name === action.payload) {
-      //     return { ...state, activeList: item };
-      //   }
-      // }
-      console.log(`in select list reducer`);
       const lists = state.lists;
       for(let i = 0; i < lists.length; i++) {
         if (lists[i].name === action.payload) {
-          // console.log(lists[i].name);
-          // console.log(i);
           return { ...state, activeList: lists[i], activeListIndex: i };
         }
       }
@@ -64,12 +63,9 @@ export default function (state = INITIAL_STATE, action) {
     case SELECT_TODO:
       console.log(`in select todo reducer`);
       console.log(state.activeList);
-      // console.log(action.payload);
       const todos = state.activeList.todos;
       for (let i = 0; i < todos.length; i++) {
         if (todos[i].todo === action.payload) {
-          // console.log(todos[i]);
-          // console.log(i);
           return { ...state, activeTodo: todos[i], activeTodoIndex: i };
         }
       }

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
 import { addList } from '../actions/user';
 
@@ -39,13 +38,6 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 8,
   },
 });
-
-// const resetNavigationStack = NavigationActions.reset({
-//   index: 0,
-//   actions: [
-//     NavigationActions.navigate({ routeName: 'Lists' }),
-//   ],
-// });
 
 class CreateList extends Component {
   static propTypes = {

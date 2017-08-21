@@ -36,7 +36,11 @@ class ListInfo extends Component {
   handleEditPress = () => {
     this.setState((prevState, props) => ({
       editable: !prevState.editable,
-    }));
+    }), () => {
+      if (this.state.editable) {
+        this.refs.textInput.focus();
+      }
+    });
 
     /*
     Check to see if edited listName state is different from the listName passed
@@ -61,7 +65,7 @@ class ListInfo extends Component {
     this.props.removeList(userId, activeListIndex);
 
     // Return to lists screen after deletion
-    // this.props.navigation.goBack(null);
+    this.props.navigation.goBack(null);
   }
 
   handleBackButtonPress = () => {
@@ -74,6 +78,7 @@ class ListInfo extends Component {
         <BackButton onPress={this.handleBackButtonPress} />
         <View style={styles.container}>
           <TextInput
+            ref="textInput"
             style={styles.input}
             value={this.state.listName}
             spellCheck={false}

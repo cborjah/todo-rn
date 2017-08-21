@@ -39,17 +39,13 @@ const users = {
   },
   '/createList': {
     post: (req, res) => {
-      User.findOneAndUpdate(
-        { _id: req.body.userId },
-        { $push: { lists: { name: req.body.listName, todos: [] } } },
-        (err, data) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.status(200).json(data);
-          }
-        }
-      );
+      User.findOne({ _id: req.body.userId }, (err, user) => {
+        user.createList(req.body.listName)
+          .then((updatedDoc) => {
+            console.log(updatedDoc);
+            res.status(200).send(updatedDoc);
+          });
+      });
     },
   },
   '/changeListName': {

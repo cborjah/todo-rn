@@ -14,6 +14,18 @@ Arrow functions explicitly prevent binding this, so the method will not
 have access to the document.
 */
 
+UserSchema.methods.createList = function createList(listName) {
+  this.lists.push({ name: listName, todos: [] });
+  this.markModified('lists');
+
+  return this.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+    return this;
+  });
+}
+
 UserSchema.methods.addTodo = function addTodo(listName, todo) {
   for (let item of this.lists) {
     if (item.name === listName) {
