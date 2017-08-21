@@ -1,6 +1,4 @@
 const changeTodoStatus = (userId, newStatus, listIndex, todoIndex) => {
-  // console.log(`in changeTodoStatus`);
-  // console.log(`${userId}, ${newStatus}, ${listIndex}, ${todoIndex}`);
   return fetch('http://localhost:7700/changeTodoStatus', {
     method: 'POST',
     headers: {
@@ -8,9 +6,7 @@ const changeTodoStatus = (userId, newStatus, listIndex, todoIndex) => {
     },
     body: `userId=${userId}&newStatus=${newStatus}&listIndex=${listIndex}&todoIndex=${todoIndex}`,
   })
-    .then((response) => {
-      return response.json();
-    })
+    .then(response => response.json())
     .catch(error => console.log(error));
 };
 

@@ -6,9 +6,7 @@ const createTodo = (userId, todo, listName) => {
     },
     body: `userId=${userId}&todo=${todo}&listName=${listName}`,
   })
-    .then((response) => {
-      return response.json();
-    })
+    .then(response => response.json())
     .catch(error => console.log(error));
 };
 

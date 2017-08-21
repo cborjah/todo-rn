@@ -1,6 +1,4 @@
 const deleteList = (userId, listIndex) => {
-  // console.log(`in deleteList`);
-  // console.log(`${userId}, ${listIndex}`);
   return fetch('http://localhost:7700/deleteList', {
     method: 'POST',
     headers: {
@@ -8,9 +6,7 @@ const deleteList = (userId, listIndex) => {
     },
     body: `userId=${userId}&&listIndex=${listIndex}`,
   })
-    .then((response) => {
-      return response.json();
-    })
+    .then(response => response.json())
     .catch(error => console.log(error));
 };
 
