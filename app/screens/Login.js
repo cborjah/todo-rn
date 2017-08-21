@@ -9,20 +9,6 @@ import { Container } from '../components/Container';
 import { Header } from '../components/Text';
 import { LoginButton } from '../components/Buttons';
 
-const styles = EStyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    width: '80%',
-    marginVertical: 10,
-    backgroundColor: 'grey',
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-  },
-});
-
 /*
 Navigation action that navigates to Lists screen and clears navigation stack
 history for performance.
@@ -83,5 +69,19 @@ class Login extends Component {
     );
   }
 }
+
+const styles = EStyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    width: '80%',
+    marginVertical: 10,
+    backgroundColor: 'grey',
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+  },
+});
 
 export default connect(null, { loginUser })(Login);

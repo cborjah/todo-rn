@@ -9,6 +9,10 @@ import { TitleBar } from '../components/TitleBar';
 import { ListItem, Separator } from '../components/List';
 import { LogoutButton } from '../components/Buttons';
 
+/*
+Navigation action that navigates to Login screen and clears navigation stack
+history for performance.
+*/
 const returnToLoginScreen = NavigationActions.reset({
   index: 0,
   actions: [

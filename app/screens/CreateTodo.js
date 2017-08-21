@@ -7,37 +7,6 @@ import { addTodo } from '../actions/user';
 import { Container } from '../components/Container';
 import { CreateText } from '../components/Text';
 
-const styles = EStyleSheet.create({
-  buttonContainer: {
-    width: '80%',
-    marginTop: 15,
-  },
-  create: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 10,
-    marginBottom: 10,
-    backgroundColor: 'green',
-  },
-  cancel: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 10,
-    marginTop: 10,
-    backgroundColor: 'red',
-  },
-  container: {
-    flexDirection: 'row',
-    width: '80%',
-    marginVertical: 10,
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-  },
-});
-
 class CreateTodo extends Component {
   static propTypes = {
     navigation: PropTypes.object,
@@ -88,6 +57,37 @@ class CreateTodo extends Component {
     );
   }
 }
+
+const styles = EStyleSheet.create({
+  buttonContainer: {
+    width: '80%',
+    marginTop: 15,
+  },
+  create: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    marginBottom: 10,
+    backgroundColor: 'green',
+  },
+  cancel: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    marginTop: 10,
+    backgroundColor: 'red',
+  },
+  container: {
+    flexDirection: 'row',
+    width: '80%',
+    marginVertical: 10,
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+  },
+});
 
 const mapStateToProps = (state) => {
   return {
