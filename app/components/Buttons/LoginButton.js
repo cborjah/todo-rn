@@ -9,7 +9,7 @@ const LoginButton = ({ onPress, label, color }) => (
     underlayColor={styles.$underlayColor}
     onPress={onPress}
   >
-    <Text>{label}</Text>
+    <Text style={styles.text}>{label}</Text>
   </TouchableHighlight>
 );
 

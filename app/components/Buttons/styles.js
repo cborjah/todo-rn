@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-  $underlayColor: 'transparent',
+  $underlayColor: '#81C784',
   loginButtonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -41,5 +41,8 @@ export default EStyleSheet.create({
   logout: {
     color: 'white',
     fontSize: 20,
+  },
+  text: {
+    letterSpacing: 2,
   },
 });

@@ -8,6 +8,7 @@ export default EStyleSheet.create({
   },
   header: {
     fontSize: 40,
+    letterSpacing: 2,
   },
   createTextContainer: {
     alignItems: 'center',
